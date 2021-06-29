@@ -45,6 +45,7 @@ public:
         begin = nullptr;
         end = nullptr;
     }
+
     void add_begin(int N) {
         // get element
         Node* new_element = new Node(N, nullptr);
@@ -143,9 +144,10 @@ public:
             actual_prev = do_XOR(actual_next, actual->get_XOR());
         }
     }
-    void delete_begin() {
+    int delete_begin() {
         if (begin == nullptr) { // 0 element case
            // printf("NULL\n");
+            return 0;
         }
         else {
             Node* temp = begin;
@@ -169,6 +171,7 @@ public:
             begin = begin_next;
 
             delete(temp);
+            return 1;
         }
     }
     void delete_end() {
@@ -435,6 +438,8 @@ public:
             //printf("\n");
         }
     }
+
+
 };
 
 int convert_command(const std::string& cmd) {
@@ -579,8 +584,11 @@ int main()
         std::cout << std::endl << std::endl;
 #endif        
     }
+    while (list->delete_begin() != 0) {
 
-
+    }
+    delete(list);
+    return 0;
 }
 
 /*  TO_DO
